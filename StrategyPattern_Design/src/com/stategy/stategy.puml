@@ -1,0 +1,58 @@
+@startuml
+
+
+interface SubmissionBehavior{
+  commit()
+}
+
+abstract class Character{
+ SubmissionBehavior submissionBehavior
+ display()
+ completeCommit()
+ setSubmissionBehavior(SubmissionBehavior submissionBehavior)
+}
+
+class Coder{
+  Coder()
+  display()
+}
+
+class DevelopmentSupervisor{
+  Coder()
+  display()
+}
+
+class ProductManager{
+  Coder()
+  display()
+}
+
+class ReceptionSister{
+  Coder()
+  display()
+}
+
+class GitCommitBehavior{
+ commit()
+}
+class MailCommitBehavior{
+ commit()
+}
+class SVNCommitBehavior{
+ commit()
+}
+
+Character <|-- Coder : extends
+Character <|-- DevelopmentSupervisor
+Character <|-- ProductManager
+Character <|-- ReceptionSister
+
+SubmissionBehavior <|.. GitCommitBehavior : implements
+SubmissionBehavior <|.. MailCommitBehavior
+SubmissionBehavior <|.. SVNCommitBehavior
+
+Character --> SubmissionBehavior : 行为/算法
+
+
+
+@enduml
